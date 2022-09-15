@@ -112,7 +112,7 @@ class BST {
         preOrderRecursive(root.right);
     }
 
-    // preOrder traversal Iterative
+    /** preOrder traversal Iterative */
     public List<Integer> preOrderIterative(TreeNode root) {
         if (root == null) return null;
         List<Integer> list = new ArrayList<>();
@@ -478,7 +478,7 @@ public class BinarySearchTree {
         root = bst.insert(root, 13);
 
 //        root = bst.deleteNode(root, 4);
-//        bst.inOrderTraversalRecursive(root);
+        bst.inOrderTraversalRecursive(root);
 //        bst.inOrderTraversalIterative(root);
 //        bst.preOrderRecursive(root);
 //        bst.preOrderIterative(root);

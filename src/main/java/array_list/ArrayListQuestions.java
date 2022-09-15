@@ -1,4 +1,4 @@
-package CodingPractice.array_list;
+package array_list;
 
 import java.util.*;
 

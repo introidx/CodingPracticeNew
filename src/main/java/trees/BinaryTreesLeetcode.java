@@ -1,7 +1,5 @@
 package trees;
 
-import com.sun.source.tree.Tree;
-import javafx.util.Pair;
 
 import java.util.*;
 

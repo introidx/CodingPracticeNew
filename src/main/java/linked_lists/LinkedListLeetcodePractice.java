@@ -21,7 +21,7 @@ public class LinkedListLeetcodePractice {
         obj1.printNodes(res);
 
     }
-    
+
 
     int subArraySum(int arr[], int n, int sum) {
         int curr_sum, i, j;

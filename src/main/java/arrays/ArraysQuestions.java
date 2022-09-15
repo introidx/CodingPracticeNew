@@ -4,31 +4,104 @@ import java.util.*;
 
 public class ArraysQuestions {
     public static void main(String[] args) {
+        int[] arr1 = {1,2,2,3,4,5};
+        int[] arr2 = {3,4,5,6};
+        findUnion(arr1,arr2);
+    }
+
+    public long countExcellentPairs(int[] nums, int k) {
+
+        long count =0;
+        Set<Integer> set = new HashSet<>();
+        for (int i : nums){
+            set.add(i);
+        }
+
+        int n = set.size();
 
 
+        for (int i =0; i < n ; i++){
+            for (int j = i ; j < n ; j++){
+
+                long x = countSetBits1(nums[i] & nums[j]) + countSetBits1(nums[i] | nums[j]);
+                if(x >= k) count++;
+            }
+        }
+        return count;
+    }
+
+    public int countSetBits1(int n){
+        int count =0;
+        while(n > 0){
+            count+= n & 1;
+            n >>=1;
+        }
+        return count;
+    }
+// time - O(m +n)
+
+    public static void findUnion(int[] arr1, int[] arr2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i : arr1){
+            map.put(i, 1);
+        }
+
+        for (int i : arr2){
+            if (map.containsKey(i)){
+                System.out.println(i);
+                map.remove(i);
+            }
+        }
+
+//        for (int i : map.keySet()){
+//
+//        }
+/*
+        int n = arr1.length, m = arr2.length;
+        int i =0,j =0;
+
+        while (i < n && j < m){
+            if(arr1[i] < arr2[j]){
+                System.out.println(arr1[i++]);
+            }else if(arr1[i] > arr2[j]){
+                System.out.println(arr2[j++]);
+            }else{
+                System.out.println(arr1[i++]);
+                j++;
+            }
+        }
+
+        while (i < n){
+            System.out.println(arr1[i++]);
+        }
+        while (j < m){
+            System.out.println(arr2[j++]);
+        }
+
+ */
 
     }
 
     public int maximumGood(int[][] s) {
         int n = s.length;
-        if(n == 2){
+        if (n == 2) {
             return callFortwo(s);
         }
 
         int[] arr = new int[n];
 
-        for (int i =0; i < n ; i++){
-            for (int j =0; j < n ; j++){
-                if(s[i][j] == 0){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (s[i][j] == 0) {
                     arr[s[i][j]]--;
-                }else if(s[i][j] == 1){
+                } else if (s[i][j] == 1) {
                     arr[s[i][j]]++;
                 }
             }
         }
 
         int max = 0;
-        for (int i =0; i < n ; i++){
+        for (int i = 0; i < n; i++) {
             max = Math.max(max, arr[i]);
         }
         return max;
@@ -38,18 +111,18 @@ public class ArraysQuestions {
     private int callFortwo(int[][] s) {
         int[] arr = new int[3];
 
-        for (int i =0; i < 3 ; i++){
-            for (int j =0; j < 3 ; j++){
-                if(s[i][j] == 0){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (s[i][j] == 0) {
                     arr[s[i][j]]--;
-                }else if(s[i][j] == 1){
+                } else if (s[i][j] == 1) {
                     arr[s[i][j]]++;
                 }
             }
         }
 
         int max = 0;
-        for (int i =0; i < 3 ; i++){
+        for (int i = 0; i < 3; i++) {
             max = Math.max(max, arr[i]);
         }
         return max;
@@ -67,10 +140,9 @@ public class ArraysQuestions {
 
     }
 
-    public void someFun(){
+    public void someFun() {
 
     }
-
 
 
     public void rotate(int[][] matrix) {
