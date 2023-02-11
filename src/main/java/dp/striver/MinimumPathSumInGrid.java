@@ -23,8 +23,8 @@ public class MinimumPathSumInGrid {
 
         if (dp[i][j] != -1) return dp[i][j];
 
-        int up = grid[i][j] + recursive(i-1, j, grid);
-        int left = grid[i][j] + recursive(i, j-1, grid);
+        int up = grid[i][j] + memoization(i-1, j, grid, dp);
+        int left = grid[i][j] + memoization(i, j-1, grid, dp);
 
         return dp[i][j] = Math.max(up, left);
     }
