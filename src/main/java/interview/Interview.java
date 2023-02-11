@@ -3,11 +3,94 @@ package interview;
 import java.util.*;
 
 
+
 public class Interview {
     public static void main(String[] args) {
+        //System.out.println(multiply(3,2));
+        List<String> arr = List.of("hos", "pit" , "tal");
+        System.out.println(checkListIfItFormsString(arr, "hospital"));
+
 
 
     }
+
+    public static boolean checkListIfItFormsString(List<String> arr, String str){
+        int index =0;
+        for (String s : arr){
+            if(str.contains(s)){
+                int len = str.length();
+                int start = str.indexOf(s);
+                int end = start + s.length();
+                str = str.substring(0, start) + str.substring(end, len);
+                //System.out.println(str);
+            }
+        }
+        System.out.println(str);
+        return str.equals("");
+    }
+
+    static int multiply(int x, int y) {
+
+        /* 0 multiplied with anything gives 0 */
+        if (y == 0)
+            return 0;
+
+        /* Add x one by one */
+        if (y > 0)
+            return (x + multiply(x, y - 1));
+
+        /* the case where y is negative */
+        if (y < 0)
+            return -multiply(x, -y);
+
+        return -1;
+    }
+
+    //int[] arr = {1,2,3,4,1,1,2,5,6};
+    public static int findSecondNonRepeatingInteger(int[] arr){
+        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+        for (int i : arr){
+            map.put(i, map.getOrDefault(i,0) +1);
+        }
+
+        /**
+         * {1 -> 3} {2 -> 2} {3 ->1} {4 -> 1} {5-> 1} {6 -> 1}
+         */
+        int first =0, second =0;
+        for (Map.Entry<Integer , Integer> e : map.entrySet()){
+            int key = e.getKey();
+            int value = e.getValue();
+
+            if(value == 1) {
+                if (first == 0){
+                    first = key;
+                }else if (second == 0){
+                    second = key;
+                    return second;
+                }
+            }
+        }
+
+        return -1;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int[] findOriginalArray(int[] changed) {
         Arrays.sort(changed);
@@ -103,6 +186,8 @@ public class Interview {
     }
 
 }
+
+
 
 
 

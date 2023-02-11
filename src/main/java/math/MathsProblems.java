@@ -2,8 +2,20 @@ package math;
 
 public class MathsProblems {
     public static void main(String[] args) {
-        int a = findThePositionOFLift(5, 'u', 4);
-        System.out.println(a);
+        System.out.println(findPalindromeNumber(226574));
+
+    }
+
+    public static boolean findPalindromeNumber(int a){
+        int copyA = a;
+        int b =0;
+        while (copyA > 0){
+            int x = copyA % 10;
+            b = b * 10 + x;
+            copyA = copyA /10;
+        }
+        System.out.println(b);
+        return a == b;
 
     }
     /* int currPos, char d/u, int steps
