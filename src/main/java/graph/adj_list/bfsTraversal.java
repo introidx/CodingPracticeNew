@@ -1,9 +1,6 @@
 package graph.adj_list;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class bfsTraversal {
 
@@ -37,8 +34,8 @@ public class bfsTraversal {
         boolean[] vis = new boolean[v];
         Queue<Integer> q = new LinkedList<>();
 
-        q.add(0);
-        vis[0] = true;
+        q.add(1);
+        vis[1] = true;
 
         while (!q.isEmpty()) {
             int node = q.poll();
@@ -54,6 +51,37 @@ public class bfsTraversal {
         }
         return res;
 
+    }
+
+    public int findCircleNum(int[][] graph) {
+        int n = graph.length;
+        boolean[] visited = new boolean[n];
+        int count =0;
+
+        for (int i =0; i < n ; i++){
+            if (!visited[i]){
+                bfs(graph, visited, i);
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void bfs(int[][] graph, boolean[] visited, int i) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(i);
+        visited[i] = true;
+
+        while (!q.isEmpty()){
+            int curr = q.poll();
+            for(int j =0; j < graph[0].length; j++){
+                if (graph[curr][j] == 1 && !visited[j]){
+                    q.add(j);
+                    bfs(graph, visited, j);
+                }
+            }
+
+        }
     }
 
 

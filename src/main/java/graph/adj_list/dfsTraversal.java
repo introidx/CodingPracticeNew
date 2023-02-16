@@ -49,4 +49,28 @@ public class dfsTraversal {
             }
         }
     }
+
+    public int findCircleNum(int[][] graph) {
+        int n = graph.length;
+        boolean[] visited = new boolean[n];
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(graph, visited, i);
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void dfs(int[][] graph, boolean[] visited, int i) {
+        for (int j = 0; j < graph[0].length; j++) {
+            if (graph[i][j] == 1 && !visited[j]){
+                visited[j] = true;
+                dfs(graph, visited, j);
+            }
+        }
+
+    }
 }

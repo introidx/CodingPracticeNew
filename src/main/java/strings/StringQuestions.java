@@ -6,6 +6,14 @@ public class StringQuestions {
 
 
     public static void main(String[] args) {
+        String s = "abc";
+        //System.out.println(s + s);
+        int n = s.length();
+        s = s + s;
+
+        s = s.substring(n, s.length());
+        System.out.println(s);
+
 
 
     }

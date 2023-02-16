@@ -9,6 +9,29 @@ public class ArraysQuestions {
         findUnion(arr1,arr2);
     }
 
+    public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
+        Arrays.sort(horizontalCuts);
+        Arrays.sort(verticalCuts);
+
+        int hLen = horizontalCuts.length;
+        int vLen = verticalCuts.length;
+
+        int maxHeight = Math.max(horizontalCuts[0] - 0 , h - horizontalCuts[hLen -1]);
+        for (int i = 1; i < hLen ; i++){
+            int yDiff = horizontalCuts[i] - horizontalCuts[i-1];
+            maxHeight = Math.max(yDiff, maxHeight);
+        }
+
+        int maxWidth = Math.max(verticalCuts[0] - 0 , w - verticalCuts[vLen -1]);
+        for (int i = 1; i < vLen ; i++){
+            int xDiff = verticalCuts[i] - verticalCuts[i-1];
+            maxWidth = Math.max(maxWidth, xDiff);
+        }
+
+        return maxHeight * maxWidth;
+
+    }
+
     public long countExcellentPairs(int[] nums, int k) {
 
         long count =0;
