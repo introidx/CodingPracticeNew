@@ -32,6 +32,8 @@ public class Stream1 {
         Integer minInteger = list.stream().min((x, y) -> x.compareTo(y)).get();
         System.out.println("min " + minInteger);
 
+        //abc
+
         // maz
         Integer maxInteger = list.stream().max((x, y) -> x.compareTo(y)).get();
         System.out.println("max " + maxInteger);
