@@ -1,6 +1,4 @@
-package hash_map_imol;
-
-import java.util.*;
+package design.hash_map_imol;
 
 /**
  * Created by PRAKASH RANJAN on 23-07-2022
