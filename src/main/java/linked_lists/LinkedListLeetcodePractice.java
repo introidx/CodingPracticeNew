@@ -22,6 +22,21 @@ public class LinkedListLeetcodePractice {
 
     }
 
+    public ListNode swapPairs(ListNode head) {
+        if(head == null || head.next == null) return head;
+
+        ListNode l1 = head, l2 = head.next, l3 = head.next.next;
+        l2.next = l1;
+        l1.next = l3;
+
+        if(l3 != null){
+            l1.next = swapPairs(l3);
+        }
+
+        return l2;
+
+    }
+
 
     int subArraySum(int arr[], int n, int sum) {
         int curr_sum, i, j;
@@ -178,13 +193,13 @@ public class LinkedListLeetcodePractice {
         return head;
     }
 
-    public static ListNode swapPairs(ListNode head) {
+    public static ListNode swapPairs3(ListNode head) {
         ListNode p1 = head, p2 = head.next, p3 = head.next.next;
         p2.next = p1;
         p1.next = p3;
 
         if (p3 != null) {
-            p1.next = swapPairs(p3);
+            p1.next = swapPairs3(p3);
         }
         return p2;
     }
