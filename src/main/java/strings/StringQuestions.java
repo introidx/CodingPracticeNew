@@ -18,6 +18,20 @@ public class StringQuestions {
 
     }
 
+    public String reverseWords(String s) {
+        StringBuilder sb= new StringBuilder();
+        for (int i = s.length()-1 ; i >=0 ; i--){
+            if (s.charAt(i) == ' ') continue;
+            int end = i;
+            while (i >= 0 && s.charAt(i) != ' ') i--;
+            sb.append(s.substring(i+1, end +1));
+            sb.append(" ");
+        }
+
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
+
     public int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length(), n = text2.length();
         if (m < n) {

@@ -1,8 +1,22 @@
 package oops;
 
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Student extends School {
+
+    public static void main(String[] args) {
+        int b =10;
+        SampleTest n = a -> {
+            int c = a + b;
+            return c;
+        };
+
+        System.out.println(n.sum(10));
+    }
+
+
+
 
 
     //    @Override
@@ -14,6 +28,10 @@ public class Student extends School {
 //    public void calculateAge(int age) {
 //        super.calculateAge(age);
 //    }
+}
+
+interface SampleTest{
+    int sum(int t);
 }
 
 class Person{

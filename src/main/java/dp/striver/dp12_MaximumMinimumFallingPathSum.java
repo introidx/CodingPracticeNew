@@ -3,7 +3,7 @@ package dp.striver;
 /**
  * Created by PRAKASH RANJAN on 11-02-2023
  */
-public class MaximumMinimumFallingPathSum {
+public class dp12_MaximumMinimumFallingPathSum {
 
     // Problem Link :  https://takeuforward.org/data-structure/minimum-maximum-falling-path-sum-dp-12/
 
@@ -11,6 +11,9 @@ public class MaximumMinimumFallingPathSum {
     // TC- O(3^m)
     // Space - O(M)
     private static int findMaximumFallingSum(int i, int j , int[][] grid){
+
+        // call like this : findMaximumFallingSum(n-1, 0, matrix);
+
         int m = grid.length;
         int n = grid[0].length;
 

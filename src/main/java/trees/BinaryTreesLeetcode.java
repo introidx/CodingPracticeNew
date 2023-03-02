@@ -12,6 +12,37 @@ public class BinaryTreesLeetcode {
 
     }
 
+    public TreeNode invertTree1(TreeNode root) {
+        if (root == null) return null;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()){
+            TreeNode current = q.poll();
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+
+            if(current.left != null){
+                q.add(current.left);
+            }
+
+            if (current.right != null){
+                q.add(current.right);
+            }
+        }
+
+        return root;
+
+    }
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode temp = root.left;
+        root.left = invertTree(root.right);
+        root.right = invertTree(temp);
+        return root;
+    }
+
     public static boolean isLeafNode(TreeNode node){
         return node.left == null && node.right == null;
     }

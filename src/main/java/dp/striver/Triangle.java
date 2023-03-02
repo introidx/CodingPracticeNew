@@ -53,6 +53,28 @@ public class Triangle {
 
     }
 
+    static int minimumPathSum1(List<List<Integer>> list){
+        int n = list.size();
+        int dp[][]= new int[n][n];
+
+        for(int j=0;j<n;j++){
+            dp[n-1][j] = list.get(n-1).get(j);
+        }
+
+        for(int i=n-2; i>=0; i--){
+            for(int j=i; j>=0; j--){
+
+                int down = list.get(i).get(j)+dp[i+1][j];
+                int diagonal = list.get(i).get(j)+dp[i+1][j+1];
+
+                dp[i][j] = Math.min(down, diagonal);
+            }
+        }
+
+        return dp[0][0];
+
+    }
+
     public static void main(String args[]) {
 
         int triangle [][] = {{1},

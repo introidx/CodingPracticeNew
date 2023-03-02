@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by PRAKASH RANJAN on 10-02-2023
  */
-public class MaximumSumNonAdjacent {
+public class dp5_MaximumSumNonAdjacent {
 
     public static void main(String[] args) {
 

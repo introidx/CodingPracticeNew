@@ -459,6 +459,10 @@ class BST {
         return node;
     }
 
+    public void sumOfOddLevelAndEvenLevel(TreeNode root){
+
+    }
+
 
 }
 

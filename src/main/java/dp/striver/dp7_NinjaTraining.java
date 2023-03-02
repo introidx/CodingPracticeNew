@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by PRAKASH RANJAN on 10-02-2023
  */
-public class NinjaTraining {
+public class dp7_NinjaTraining {
 
     public static void main(String[] args) {
         int[][] points = {{10,40,70},

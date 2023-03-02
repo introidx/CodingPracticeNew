@@ -3,10 +3,10 @@ package dp.striver;
 /**
  * Created by PRAKASH RANJAN on 11-02-2023
  */
-public class MinimumPathSumInGrid {
+public class dp10_MinimumPathSumInGrid {
 
     public static int recursive(int i , int j , int[][] grid){
-
+        // max path sum
         if(i == 0 && j == 0) return grid[i][j];
         if(i <0 || j < 0) return Integer.MAX_VALUE;
 
