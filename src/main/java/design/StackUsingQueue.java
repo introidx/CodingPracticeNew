@@ -2,9 +2,6 @@ package design;
 
 import java.util.*;
 
-public class StackUsingQueue {
-}
-
 
 class StackWithTwoQueues<T> {
     Queue<T> q1;

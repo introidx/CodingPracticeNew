@@ -1,4 +1,4 @@
-package design.hash_map_imol;
+package design.hash_map_implementation;
 
 /**
  * Created by PRAKASH RANJAN on 23-07-2022

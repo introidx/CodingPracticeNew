@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by PRAKASH RANJAN on 11-02-2023
  */
-public class Triangle {
+public class dp11_Triangle {
 
     public static int recursive(List<List<Integer>> grid, int i, int j){
         int n = grid.size();

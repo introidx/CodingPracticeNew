@@ -1,4 +1,4 @@
-package design_pattern.strategy_design_pattern;
+package design_pattern.p1_strategy_design_pattern;
 
 public class design_patterns {
 

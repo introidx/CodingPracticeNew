@@ -2,50 +2,75 @@ package arrays;
 
 import java.util.*;
 
+class Pair<K,V> {
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public K getKey() {
+        return key;
+    }
+
+    public V getValue() {
+        return value;
+    }
+
+    public void setKey(K key) {
+        this.key = key;
+    }
+
+    public void setValue(V value) {
+        this.value = value;
+    }
+}
+
+
 public class ArraysQuestions {
     public static void main(String[] args) {
-//        int arr1[] = { -12, 11, -13, -5, 6, -7, 5, -3, -6 };
-//        int[] aa = separatePositiveAndNegative(arr1);
-//        for (int i : aa){
-//            System.out.println(i);
-//        }
-
-        int target = 10;
-        int res =0;
-        int[] arr = {6,6,4,5,5};
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i : arr){
-            map.put(i, map.getOrDefault(i, 0) + 1);
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+        List<Pair<Integer, Integer>> pairs = findUniquePairs(arr);
+        //System.out.println(pairs.size());
+        for (Pair<Integer, Integer> pair : pairs) {
+            //System.out.println("(" + pair.get(0) + ", " + pair.get(1) + ")");
+            System.out.println(pair.getKey() + "  " + pair.getValue());
         }
-
-        for (Map.Entry<Integer, Integer> e : map.entrySet()){
-            int key  = e.getKey();
-            int value  = e.getValue();
-            System.out.println(key + "  " + value);
-            int rem = target - key;
-            if (map.containsKey(rem)){
-                if (rem == key){
-                    res += map.get(rem)/2;
-                }else{
-                    res += value * map.get(rem);
-                }
-            }
-            map.put(key, 0);
-            map.put(rem, 0);
-
-        }
-
-        System.out.println("----" + res);
-
-        for (int i =0; i < arr.length -1; i++){
-            for(int j = i+1; j < arr.length ; j++){
-                if (arr[i] + arr[j] == 10){
-                    //res++;
-                }
-            }
-        }
-        System.out.println(res);
     }
+
+
+    public static List<Pair<Integer, Integer>> findUniquePairs(int[] arr) {
+        List<Pair<Integer, Integer>> pairs = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            map.put(arr[i], i);
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                int sum = arr[i] + arr[j];
+                int power = (int) Math.round(Math.pow(sum, 1.0/3));
+
+                if (Math.pow(power, 3) == sum) {
+                    int complement = (3 * (int) Math.pow(power, 3) - sum) / 2;
+                    if (map.containsKey(complement) && map.get(complement) > i) {
+                        pairs.add(new Pair<>(arr[i], arr[j]));
+                    }
+                }
+            }
+        }
+
+        for (Pair<Integer, Integer> pair : pairs) {
+            System.out.println("(" + pair.getKey() + ", " + pair.getValue() + ")");
+        }
+
+        return pairs;
+    }
+
+
 
     public int longestIncreasingPath(int[][] matrix) {
         int m = matrix.length;
@@ -53,38 +78,36 @@ public class ArraysQuestions {
 
         int[][] dp = new int[m][n];
 
-        int longest =0;
-        for (int i =0; i < m ; i++){
-            for (int j =0; j < n ; j++){
-                int pathLength = dfs(matrix, i, j, dp, m ,n);
+        int longest = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int pathLength = dfs(matrix, i, j, dp, m, n);
                 longest = Math.max(pathLength, longest);
             }
         }
         return longest;
     }
 
-    int[][] dir = {{1,0}, {-1, 0}, {0,1}, {0, -1}};
-    public int dfs(int[][] matrix, int i, int j, int[][] dp, int m, int n){
-        if(dp[i][j] > 0) return dp[i][j];
-        int max=0;
-        for (int[] d : dir){
+    int[][] dir = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    public int dfs(int[][] matrix, int i, int j, int[][] dp, int m, int n) {
+        if (dp[i][j] > 0) return dp[i][j];
+        int max = 0;
+        for (int[] d : dir) {
             int x = i + d[0];
             int y = j + d[1];
 
-            if(x >= 0 && x < m && y >=0 && y < n && matrix[x][y] > matrix[i][j]){
-                max = Math.max(max,dfs(matrix, x, y, dp, m,n));
+            if (x >= 0 && x < m && y >= 0 && y < n && matrix[x][y] > matrix[i][j]) {
+                max = Math.max(max, dfs(matrix, x, y, dp, m, n));
             }
         }
         dp[i][j] = max + 1;
-        return max +1;
+        return max + 1;
 
     }
 
 
-
-
-
-    static int[] separatePositiveAndNegative(int[] nums){
+    static int[] separatePositiveAndNegative(int[] nums) {
         if (nums.length == 0 || nums.length == 1) return nums;
 
         int start = 0;
@@ -105,19 +128,19 @@ public class ArraysQuestions {
         return nums;
     }
 
-    public static int[] nge(int[] arr){
+    public static int[] nge(int[] arr) {
         int[] ans = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
         int n = arr.length;
 
-        ans[n-1] = -1;
-        stack.push(arr[n-1]);
-        for (int i = n-2; i>= 0 ; i--){
+        ans[n - 1] = -1;
+        stack.push(arr[n - 1]);
+        for (int i = n - 2; i >= 0; i--) {
             int max = -1;
-            while (!stack.isEmpty() && stack.peek() < arr[i]){
+            while (!stack.isEmpty() && stack.peek() < arr[i]) {
                 stack.pop();
             }
-            if (!stack.isEmpty()){
+            if (!stack.isEmpty()) {
                 max = stack.peek();
             }
             stack.push(arr[i]);
@@ -127,15 +150,15 @@ public class ArraysQuestions {
     }
 
     public int numSquares(int n) {
-        int[] dp = new int[n+1];
+        int[] dp = new int[n + 1];
         dp[0] = 0;
         dp[1] = 1;
 
-        for (int i =2; i <=n ; i++){
+        for (int i = 2; i <= n; i++) {
             int min = Integer.MAX_VALUE;
-            for (int j =1; j * j <= i; j++){
-                int rem = i -j*j;
-                if (dp[rem] < min){
+            for (int j = 1; j * j <= i; j++) {
+                int rem = i - j * j;
+                if (dp[rem] < min) {
                     min = dp[rem];
                 }
             }

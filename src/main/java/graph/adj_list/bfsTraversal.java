@@ -84,5 +84,29 @@ public class bfsTraversal {
         }
     }
 
+    public static ArrayList<Integer> bfsTraversal1(int v, ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> res = new ArrayList<>();
+        boolean[] vis = new boolean[v];
+        Queue<Integer> queue= new LinkedList<>();
+        queue.add(1);
+        vis[1] = true;
 
-}
+        while (!queue.isEmpty()){
+            int node = queue.poll();
+            res.add(node);
+
+            for (int i : adj.get(node)){
+                if(vis[i] == false){
+                    vis[i] = true;
+                    queue.add(i);
+                }
+            }
+        }
+
+        return res;
+
+    }
+
+
+
+    }

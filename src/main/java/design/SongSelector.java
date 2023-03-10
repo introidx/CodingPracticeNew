@@ -1,4 +1,4 @@
-package interview;
+package design;
 
 /**
  * Created by PRAKASH RANJAN on 09-02-2023
