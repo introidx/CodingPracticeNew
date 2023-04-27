@@ -2,59 +2,32 @@ package oops;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 
-public class Student extends School {
+public class Student {
 
     public static void main(String[] args) {
-        int b =10;
-        SampleTest n = a -> {
-            int c = a + b;
-            return c;
-        };
+        Parent a = new Parent();
+        a = new Child();
 
-        System.out.println(n.sum(10));
+        Child b = new Child();
+
     }
-
-
-
-
-
-    //    @Override
-//    public void setName(String name) {
-//        super.setName(name);
-//    }
-//
-//    @Override
-//    public void calculateAge(int age) {
-//        super.calculateAge(age);
-//    }
 }
 
-interface SampleTest{
-    int sum(int t);
-}
-
-class Person{
+class Parent{
+    int id;
     String name;
-    int age;
 
-    public void setName(String name){
-        this.name =name;
-    }
-
-    public void calculateAge(int age){
-        this.age = age;
+    public void printNameAndId(){
+        System.out.println("name = " +name + "id = " +id);
     }
 }
 
-abstract class School{
-    public void schoolName(){
-        System.out.println("abs");
-    }
+class Child extends Parent{
+
 }
 
-interface College{
-     default public void schoolName(){
 
-    }
-}
+
+

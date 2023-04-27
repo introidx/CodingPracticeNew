@@ -41,6 +41,8 @@ public class ArraysQuestions {
     }
 
 
+
+
     public static List<Pair<Integer, Integer>> findUniquePairs(int[] arr) {
         List<Pair<Integer, Integer>> pairs = new ArrayList<>();
         Map<Integer, Integer> map = new HashMap<>();

@@ -1,5 +1,7 @@
 package design.hash_map_implementation;
 
+import java.util.Objects;
+
 /**
  * Created by PRAKASH RANJAN on 23-07-2022
  */
@@ -15,6 +17,19 @@ class Node {
         this.value = value;
         this.hash = hash;
         this.next = next;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return key == node.key && value == node.value && hash == node.hash && Objects.equals(next, node.next);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, value, hash, next);
     }
 }
 

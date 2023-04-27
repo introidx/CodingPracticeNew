@@ -3,6 +3,9 @@ package interview;
 public class FarEye {
     public static void main(String[] args) {
 
+        var a = 6;
+        a = 7;
+
         // A- Z -> 1 -26
         // AA - AZ - 27 - 52
         // AC- 29

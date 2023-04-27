@@ -11,6 +11,45 @@ public class ArrayListQuestions {
 
     }
 
+    public int f(int eggs,int floors) {
+        if(floors == 0 || floors == 1) return floors;
+        if(eggs == 1) return floors;
+
+        int ans = Integer.MAX_VALUE;
+        for(int i = 1;i <= floors;i++) {
+            ans = Math.min(ans, Math.min( f(eggs-1,i-1) , f(eggs,floors - i)));
+
+        }
+        return ans + 1;
+    }
+    public int twoEggDrop(int n) {
+        int floors = n;
+        int eggs = 2;
+        return f(eggs,floors);
+    }
+
+    public int wateringPlants(int[] plants, int capacity) {
+        // {-1, 0, 1, 2 , 3}
+
+        int i =0;
+        int n = plants.length;
+        int steps = 0;
+        int currCapacity = capacity;
+        while (i < n){
+            if(plants[i] > currCapacity){
+                steps += 2 * i; // i -1 + 1
+                currCapacity = capacity;
+            }
+            currCapacity -= plants[i];
+            steps++;
+            i++;
+        }
+
+        return steps;
+
+
+    }
+
     public int minimumTotal(List<List<Integer>> list) {
         int n = list.size();
         List<Integer> li = new ArrayList<>(list.get(n-1));

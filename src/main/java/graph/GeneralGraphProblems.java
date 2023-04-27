@@ -5,28 +5,48 @@ import java.util.*;
 /**
  * Created by PRAKASH RANJAN on 11-07-2022
  */
+
+class Node {
+    public int val;
+    public List<Node> neighbors;
+    public Node() {
+        val = 0;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val) {
+        val = _val;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val, ArrayList<Node> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+}
+
 public class GeneralGraphProblems {
     public static void main(String[] args) {
-//        static int x =0;
-        Test t = new Test();
-        System.out.println(t.x + " " + t.y);
-        HashMap<Integer, Integer> map = new HashMap<>();
 
-
-//        System.out.println(20);
-//        Integer[] arr = {1,2,3,4,5};
-//        Arrays.sort(arr, Comparator.reverseOrder());
-//
-//        for (int i : arr){
-//            System.out.println(i);
-//        }
 
     }
 
-//    static int fun(){
-//        static int c= 0;
-//        return ++c;
-//    }
+
+    Map<Integer, Node> map = new HashMap<>();
+    public Node cloneGraph(Node node) {
+        if(node == null) return null;
+
+        if(map.containsKey(node.val)) return map.get(node.val);
+
+        Node newnode = new Node(node.val, new ArrayList<>());
+        map.put(newnode.val, newnode);
+
+        for (Node neighbour : node.neighbors){
+            newnode.neighbors.add(cloneGraph(neighbour));
+        }
+
+        return newnode;
+    }
+
+
 
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
         if(image[sr][sc] == newColor) return image;

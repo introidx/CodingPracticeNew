@@ -7,52 +7,91 @@ import java.util.*;
 public class Interiew1 {
 
     public static void main(String[] args) {
-//[1,2,3,null,null,4,5]
-        String s = "1,*, 2,3,null, null, *, 4,5";
-
-
+        //pp(4,4);
+        String s = "abacaba";
+        System.out.println(partitionString(s));
 
     }
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        Map<Integer, Integer> inMap = new HashMap<>();
-        for (int i =0; i < inorder.length ; i++){
-            inMap.put(inorder[i], i);
+    // Input: nums = [1,3,1,1,2]
+    public long[] distance(int[] nums) {
+        long[] ans = new long[nums.length];
+        int n = nums.length;
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (!map.containsKey(nums[i])) {
+                map.put(nums[i], new ArrayList());
+            }
+            map.get(nums[i]).add(i);
         }
 
-        TreeNode root = helper(preorder, 0, preorder.length -1, inorder , 0, inorder.length , inMap);
-        return root;
 
+        for (int i = 0; i < n; i++) {
+            List<Integer> list = map.get(nums[i]);
+            if (list.size() > 0) {
+                for (int j = 0; j < list.size(); j++) {
+                    if (i != list.get(j)) {
+                        ans[i] += Math.abs(i - list.get(j));
+                    }
+                }
+            } else {
+                ans[i] = 0;
+            }
 
+        }
+        return ans;
 
     }
 
-    public TreeNode helper(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd, Map<Integer, Integer> inMap){
-        if (preStart > preEnd || inStart > inEnd) return null;
-
-        TreeNode root = new TreeNode(preorder[preStart]);
-
-        int inRoot = inMap.get(preorder[preStart]);
-        int numLeft = inRoot - inStart;
-
-        root.left = helper(preorder, preStart +1 , preStart + numLeft , inorder, inStart, inRoot -1, inMap);
-        root.right = helper(preorder, preStart + numLeft + 1,preEnd, inorder, inRoot + 1, inEnd, inMap);
-
-        return root;
+    public static int partitionString(String s) {
+        Set<Character> set = new HashSet<>();
+        int res = 0;
+        for (char c : s.toCharArray()) {
+            if (!set.contains(c)) {
+                set.add(c);
+            } else {
+                res++;
+                set = new HashSet<>();
+                set.add(c);
+            }
+        }
+        return set.isEmpty() ? res : res + 1;
     }
-}
 
 
-class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
+    public static String largestNumber(int[] nums) {
+        int n = nums.length;
+        String[] arr = new String[n];
+
+        int idx = 0;
+        for (int i : nums) {
+            arr[idx++] = String.valueOf(i);
+        }
+        printArrString(arr);
+
+        Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
+        printArrString(arr);
+
+
+        StringBuilder sb = new StringBuilder();
+        for (String s : arr) {
+            sb.append(s);
+        }
+
+        if (sb.toString().isEmpty() || sb.toString().charAt(0) == '0') {
+            return "0";
+        }
+        return sb.toString();
+
+    }
+
+    public static void printArrString(String[] arr) {
+        for (String s : arr) {
+            System.out.print(s + "->");
+        }
+        System.out.println();
+    }
+
+
 }
 
